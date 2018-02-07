@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Part6";
+}
+<style>
+    input{
+        padding:5px;
+        border:1px solid #A5A5A5;
+    }
+    input.ng-dirty.ng-invalid {
+        border:1px solid red;
+        background-color:rgb(255, 244, 244);
+    }
+    .error {
+        color:red;
+    }
+   
+</style>
+<h2>REJESTRACJA</h2>
+<div ng-controller="Part6Controller">
+    <form novalidate name="f1" ng-submit="SaveData(User)">
+        <div style="color:red">{{message}}</div>
+        <table>
+            <tr>
+                <td>IMIE NAZWISKO: </td>
+                <td>
+                    <input type="text" ng-model="User.FullName" name="uFullName" ng-class="submitted?'ng-dirty':''" required autofocus />
+                    <span class="error" ng-show="(f1.uFullName.$dirty || submitted) && f1.uFullName.$error.required" >WYMAGANE IMIE I NAZWISKO!</span>
+
+                
+                </td>
+           </tr>
+            <tr>
+                <td>Email  : </td>
+                <td>
+                    <input type="email" ng-model="User.EmailID" name="uEmailID" ng-class="submitted?'ng-dirty':''" /> 
+                    <span class="error" ng-show="(f1.uEmailID.$dirty || submitted) && f1.uEmailID.$error.email">EMAIL JEST ZŁY!</span>
+                   
+                  
+                </td>
+            </tr>
+            <tr>
+                <td>NAZWA UZYTKOWNIKA </td>
+                <td>
+                    <input type="text" ng-model="User.Username" name="uUsername" ng-class="submitted?'ng-dirty':''" required />
+                    <span class="error" ng-show="(f1.uUsername.$dirty || submitted) && f1.uUsername.$error.required">NAZWA UZYTKOWNIKA WYMAGANA!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Password : </td>
+                <td>
+                    <input type="password" ng-model="User.Password" name="uPassword" ng-class="submitted?'ng-dirty':''" required />
+                    <span class="error" ng-show="(f1.uPassword.$dirty || submitted) && f1.uPassword.$error.required">HASŁO WYMAGANE!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Płeć : </td>
+                <td>
+                    <input type="radio" ng-model="User.Gender" name="uGender" value="Male" required /> Mężczyzna
+                    <input type="radio" ng-model="User.Gender" name="uGender" value="Female" required /> Kobieta
+                    <span class="error" ng-show="(f1.uGender.$dirty || submitted) && f1.uGender.$error.required">Płeć Wymagana!</span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="{{submitText}}" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/AngularController/Part6Controller.js"></script>
+}
